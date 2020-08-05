@@ -100,8 +100,13 @@ function App() {
 
   return (
     <div className="app">
-      
-      <ImageUpload/>
+      {/* // ?. is optiona */}
+     {user?.displayName? (  
+          <ImageUpload  />
+       
+      ): (
+       <h3>Sorry you need to login to upload</h3>
+       ) }
 
       <Modal
         open={open}
