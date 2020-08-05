@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css'; 
 import Post from './Post';
-import { db } from './firebase';
+import { db, auth} from './firebase';
 import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Input } from '@material-ui/core';
@@ -53,46 +53,58 @@ function App() {
   });
 }, []);
  
-const singUp = (event) => {
 
+
+const singUp = (event) => {
+      event.preventDefault();
+      auth.createUserWithEmailAndPassword(email, password)
+      
+      .catch((error) => alert(error.message))
 }
+
+
+
   return (
     <div className="app"> 
       <Modal
         open={open}
         onClose={()=> setOpen(false)}
       >
-        <center>
-          <div style={modalStyle} className={classes.paper}>
-            <img 
-            className="app__headerImage"
-            src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
-            alt=""
-            />
-            <Input
-              type="text"
-              placeholder="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            <Input
-              type="text"
-              placeholder="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <Input
-              type="password"
-              placeholder="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <Button onClick={singUp}>Singup</Button>
-          </div>
-        </center>
+        <div style={modalStyle} className={classes.paper}>
+          
+        <form className="app__singup">
+              <center>
+                  <img 
+                  className="app__headerImage"
+                  src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
+                  alt=""
+                  />
+              </center>
+              <Input
+                type="text"
+                placeholder="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+              <Input
+                type="text"
+                placeholder="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <Input
+                type="password"
+                placeholder="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <Button onClick={singUp}>Singup</Button>
+         
+        </form>
       
-      </Modal>
-      <header>
+        </div>
+    </Modal>
+    <header>
        
           <div className="app__header">
             <img 

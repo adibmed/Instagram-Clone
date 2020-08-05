@@ -10,6 +10,12 @@
   border-bottom: 1px solid lightgray;
   padding: 20px;
 }
+.app__singup {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+}
+
 .post {
   background-color: white;
   max-width: 500px;
