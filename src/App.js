@@ -4,7 +4,7 @@ import Post from './Post';
 import { db, auth} from './firebase';
 import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, Input } from '@material-ui/core';
+import { Button, Input } from '@material-ui/core'; 
 
 
 function getModalStyle() {
@@ -32,13 +32,31 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle); 
-
   const [posts, setPosts] = useState([]); 
   const [open, setOpen] = useState(false);
-
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState(''); 
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        //user has logged in...
+        console.log(authUser);
+        setUser(authUser);
+
+      } else {
+        //user has logged out...
+        setUser(null);
+      }
+    });
+    return () => {
+      //perform some cleanup actions
+      unsubscribe();
+    }
+  }, [user, username]);
+
 
   // UseEffect Runs a piece of code based on a specific condition
   useEffect(()=>{
@@ -57,8 +75,13 @@ function App() {
 
 const singUp = (event) => {
       event.preventDefault();
-      auth.createUserWithEmailAndPassword(email, password)
-      
+      auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((authUser) => {
+        return authUser.user.updateProfile({ 
+          displayName: username
+         })
+      })
       .catch((error) => alert(error.message))
 }
 
