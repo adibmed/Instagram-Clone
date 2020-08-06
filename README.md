@@ -1,11 +1,11 @@
-# 🧡 Instagram Clone With The Amazing React.js 🚀 
+# 🔥  Instagram Clone With The Amazing React.js 🚀 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
 In the project directory, you can run:
-# 🔥 Before run anything replace values in src/firebase.js with you own firebase app 🚀 
+## 🔥 Before runing anything replace values in src/firebase.js with your own firebase app credentials 🚀 
 ### `npm start`
 
 Runs the app in the development mode.<br />
@@ -68,3 +68,35 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+# 🔥  How to Deploy this app on firebase 🚀 
+
+## install Firebase 🔥 
+
+### curl -sL https://firebase.tools | bash
+
+
+## Login to firebase
+
+### firebase login
+
+
+## Initiate the project
+
+### firebase init 👇 
+
+#### select Hosting: Configure and deploy Firebase Hosting sites
+#### Use an existing project
+#### Configure as a single-page app (rewrite all urls to /index.html)? 👉 type: Yes
+#### build directory 👉 type: build
+
+
+# 🚀 
+## Deploy You App
+
+### firebase deploy
+
+
+
+# Enjoy 🙂
