@@ -20,10 +20,15 @@
   text-align: center;
   flex-direction: column;
 }
-
 .app__posts {
   padding: 20px;
+  display: flex;
+  justify-content: center;
 }
+.app__postsRight {
+  margin-left: 20px;
+}
+ 
 .post {
   background-color: white;
   max-width: 500px;
@@ -48,4 +53,24 @@
 }
 .post__avatar {
   margin-right: 10px;
+}
+.post__commentBox {
+  display: flex;
+  margin-top: 10px;
+
+}
+.post__comments {
+  padding: 10px;
+}
+.post__input {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  border-top: 1px solid lightgray;
+}
+.post__button {
+  flex: 0;
+  border: none;
+  border-top: 1px solid lightgray;
+ color: #6082a3;
 }
