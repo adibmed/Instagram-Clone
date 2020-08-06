@@ -9,6 +9,11 @@
   object-fit: contain;
   border-bottom: 1px solid lightgray;
   padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.app__headerImage {
+  object-fit: contain;
 }
 .app__singup {
   display: flex;
@@ -16,6 +21,9 @@
   flex-direction: column;
 }
 
+.app__posts {
+  padding: 20px;
+}
 .post {
   background-color: white;
   max-width: 500px;
@@ -27,6 +35,7 @@
   object-fit: contain;
   border-top: 1px solid lightgray;
   border-bottom: 1px solid lightgray;
+
 }
 .post__text {
   font-weight: normal;

@@ -6,6 +6,7 @@ import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Input } from '@material-ui/core';
 import ImageUpload from './ImageUpload';
+import InstagramEmbed from 'react-instagram-embed';
 
 
 
@@ -64,7 +65,7 @@ function App() {
   // UseEffect Runs a piece of code based on a specific condition
   useEffect(() => {
     // Post change & Post copoenent loads. This where the code runs
-    db.collection('posts').onSnapshot(snapshot => {
+    db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
       //  every time a new post is added, the code fires
       setPosts(snapshot.docs.map(doc => ({
         id: doc.id,
@@ -100,13 +101,7 @@ function App() {
 
   return (
     <div className="app">
-      {/* // ?. is optiona */}
-     {user?.displayName? (  
-          <ImageUpload  />
-       
-      ): (
-       <h3>Sorry you need to login to upload</h3>
-       ) }
+     
 
       <Modal
         open={open}
@@ -177,8 +172,7 @@ function App() {
           </form>
 
         </div>
-      </Modal>
-      <header>
+      </Modal> 
 
         <div className="app__header">
           <img
@@ -186,28 +180,41 @@ function App() {
             src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
             alt=""
           />
-
-        </div>
         {user ? (
-          <Button onClick={() => auth.signOut()}>Logout</Button>
-        ) : (
+            <Button onClick={() => auth.signOut()}>Logout</Button>
+             ) : (
             <div className="app__loginContainer">
               <Button onClick={() => setOpenSignIn(true)}>Sing In</Button>
               <Button onClick={() => setOpen(true)}>Sign Up</Button>
             </div>
           )}
-        <h1>Hello this Adibe🚀</h1>
+
+        </div>
+        
+        <div className="app__posts">
         {
           posts.map(({ id, post }) => (
             <Post
               key={id}
               username={post.username}
               caption={post.caption}
-              imgUrl={post.imgUrl} />
+              imageUrl={post.imageUrl} />
           ))
         }
+        </div>
+       
+          
+        
+        
+ 
+       {/* // ?. is optiona */}
+       {user?.displayName? (  
+          <ImageUpload  username={user.displayName}/>
+       
+      ): (
+       <h3>Sorry you need to login to upload</h3>
+       ) }
 
-      </header>
     </div>
   );
 }
