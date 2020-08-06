@@ -5,6 +5,9 @@
   background-color: white;
 }
 .app__header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   background-color: #fafafa;
   object-fit: contain;
   border-bottom: 1px solid lightgray;
